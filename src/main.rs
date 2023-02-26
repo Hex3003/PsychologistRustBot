@@ -9,7 +9,7 @@ use tokio::spawn;
 
 #[tokio::main]
 async fn main() {
-    let bot = Bot::from_env(); //Bot::new("5884653011:AAEjjLVdP7rGHZIJP7l1ZchBKxlrX7fa7z4");
+    let bot = Bot::from_env();
     setup_db(&mut establish_connection(DatabaseCredentials::default()));
     Dispatcher::builder(bot, Update::filter_message().endpoint(Asyncify(answer)))
         .dependencies(dptree::deps![Arc::new(Mutex::new(
